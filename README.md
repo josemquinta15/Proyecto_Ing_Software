@@ -1,8 +1,15 @@
 # README
 
-1) La página web se puede encontrar en: https://perrits.herokuapp.com/
-2) Para entrar como usuario admin es necesario ir a https://perrits.herokuapp.com/admin/login
+1) The Deployed web page can be founde at: https://perrits.herokuapp.com/
+2) If you want to try it on your local machine, the admin credentials are the following:
     - User: admin@perrits.com
     - Password: password
-3) Para el desarrollo de la aplicación se ocupará github projects como tablero kanban. Este ya se encuentra inicializado en la zona Projects.
-4) Los relatos de Usuario se encuentran en la carpeta relatos.
+
+## Authors
+
+| Name | Github | Email |
+| --- | --- | --- |
+| José Miguel Quintana ⭐ | [@josemquinta15](https://github.com/josemquinta15) | josemiguelquinta@uc.cl |
+| Vicente Zaror | [@vicentezaror](https://github.com/vicentezaror)  | vicentezaror@uc.cl |
+| JoseMaría Rubio | [@joserubiod](https://github.com/joserubiod) | jrubiod@uc.cl |
+

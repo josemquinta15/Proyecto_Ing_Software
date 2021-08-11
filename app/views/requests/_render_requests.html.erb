@@ -1,0 +1,69 @@
+
+
+<% if @requests.any?%>
+  <% for request in @requests%>
+    <section class = 'd-flex justify-content-center mb-3'>
+        <div class = 'show-request'>
+            <div class="row">
+                <div class="col-md-1" style="margin:auto;">
+                    <% if request.buyer.avatar.attached? %>
+                        <% @avatar = url_for(request.buyer.avatar)%>
+                    <% else %>
+                        <% @avatar = '/assets/my_account/user-556bbd7827938c9057c05a9c87cd9cf97777027758abc3a0b390993d320146a6.png'%>
+                    <% end %>
+                    <div>
+                        <img src=<%= @avatar%> width="60px" height="60px" style="margin-left: auto;margin-right: auto;display: block;">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div>
+                        <h5><%= request.buyer.full_name%></h5>
+                        <p style="margin-top: 5px;">Status: <%= request.state%></p>
+                        <p style="margin-top: 5px;"><%= request.created_at %></p>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <% if request.post.images.attached? %>
+                        <%= image_tag(url_for(request.post.images[0]), :class => "img-fluid", :style => "border-radius: 12px;height: 100px;margin:7px;width:150px;") %>
+                    <% else %>
+                        <%= image_tag('/assets/home/no_image-029092a34684b6e053f093867902beef848506a6280a6765a59e319c892450b3.jpg', :class => "img-fluid", :style => "border-radius: 12px;height: 100px;margin:7px;width:150px;") %>
+                    <% end %>
+                </div>
+
+                <div class="col-md-4" style = 'position:relative;'>
+                    <h5 style= 'margin-top:5%;'><%= request.post.title%></h5>
+                </div>
+                <div class="col-md-2 d-flex justify-content-end" style = 'margin:auto;'>
+                    <% if request.state != "Rejected" and request.state != "Accepted"%>
+
+                        <% if current_user == request.buyer %>
+                            <%= link_to request, method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' }, style: 'margin: 5px;height: 38px;' do %>
+                                Cancel <i class="fa fa-trash" style="font-size: 15px;"></i>
+                            <% end %> 
+
+                            <% elsif current_user == request.owner %>
+                                <%= link_to requests_change_state_path(:id => request.id, :new_state =>'Rejected'), method: :post, class: "btn btn-danger", style: "margin: 5px;height: 38px;"  do %>
+                                    Reject 
+                                <% end %>
+                                <%= link_to requests_change_state_path(:id => request.id, :new_state => 'Accepted', :uid1 => request.owner.id, :uid2 => request.buyer.id), method: :post, class: "btn btn-success", style: "margin: 5px;height: 38px;"  do %>
+                                    Accept
+                                <% end %>
+                            <% end %>
+
+                        <% else %>
+                            <div style = 'margin-right:30%'>
+                                <p><%= request.state %></p>
+                            </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </section>
+  <% end %>
+<% else %>
+  <div class = 'd-flex justify-content-center'>
+    <div style = 'width:75%;'>
+      <p>You have not sent any requests</p>
+    </div>
+  </div>
+<% end %>

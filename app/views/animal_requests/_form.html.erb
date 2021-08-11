@@ -1,0 +1,42 @@
+<section class="contact-clean" style="width: 100vw;height: 100vh;">
+  <%= form_with(model: animal_request, local: true) do |form| %>
+    <% if animal_request.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(animal_request.errors.count, "error") %> prohibited this animal_request from being saved:</h2>
+
+        <ul>
+        <% animal_request.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <h2 class="text-center">Request For Adding New Animals</h2>
+
+    <div class="form-group">
+      <%= form.label :name %>
+      <%= form.text_field :name, class: "form-control", placeholder: "Name", required: '', minlength: 2 %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :email %>
+      <%= form.email_field :email, class: "form-control", placeholder: "Email", required: '' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :animal %>
+      <%= form.text_field :animal, class: "form-control", placeholder: "Animal", required: '', minlength: 2 %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :message %>
+      <%= form.text_area :message, class: "form-control", placeholder: "Why should it be on Perrits?", required: '', rows: 14 %>
+    </div>
+
+    <div class="form-group">
+      <%= form.submit "Send", class:"btn btn-primary" %>
+    </div>
+  <% end %>
+</section>
+

@@ -1,0 +1,85 @@
+
+
+<section class="login-dark" style="margin-top:40px;">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, :html => {:style => "opacity: 0.90;border-radius: 15px;"}) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+      <h2 style='color:#000;'>Edit <%= resource_name.to_s.humanize %></h2>
+
+    <div class="form-group">
+      <%= f.label :email, style:'color:#000;' %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", type: "email", placeholder:"Email", required:""%>
+    </div>
+    <%#  %>
+    <div class="form-group">
+      <%= f.text_field :first_name, class:"form-control", placeholder:"First Name", required:"", minlength:"2" %>
+    </div>
+    <div class="form-group">
+      <%= f.text_field :last_name, class:"form-control",  placeholder:"Last Name", required:"", minlength:"2" %>
+    </div>
+    <div class="form-group">
+      <%= f.text_field :phone, class:"form-control",  placeholder:"Phone Number", required:"", minlength:"9", maxlength:"14" %>
+    </div>
+    <div class="form-group">
+      <%= f.text_field :city, class:"form-control",  placeholder:"City Name", required:"", minlength:"2" %>
+    </div>
+    <div class="form-group">
+      <%= f.select :gender, options_for_select(['F', 'M']), { :include_blank => "Please select Gender"}, {:class => "form-control", :required => ''} %>
+    </div>
+    <div class="form-group">
+      <%= f.file_field :avatar %>
+    </div>
+    <%#  %>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :current_password, 'Actual Password', style:'color:#000;' %><br />
+      <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control", placeholder:"Password", required:"", minlength:"8", maxlength:"100"  %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :password, 'New Password', style:'color:#000;' %><br />
+      <%= f.password_field :password, autocomplete: "new-password", class:"form-control", placeholder:"Password"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password_confirmation, 'Repeat the New Password', style:'color:#000;' %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control", placeholder:"Password"%>
+    </div>
+
+    <div class="form-group row">
+      <%= f.submit "Update", class:"btn btn-primary btn-block", style:"background: rgb(81,133,210);" %>
+    </div>
+
+    <div class = "forgot">
+      <%= link_to "Back", :back %>
+    </div>
+
+  <% end %>
+
+</section>
+
+<style>
+  .delete-account {
+    width: 25%;
+    margin-bottom: 5%;
+  }
+  @media screen and (max-width: 600px){
+    .delete-account {
+      width: 85%;
+    }
+  }
+</style>
+<div class = "d-flex justify-content-center">
+  <div class="card p-3 delete-account">
+    <div class="card-header">
+      <h3>Delete my account</h3>
+    </div>
+    <div class="card-body">
+      <p>If you delete you will lose all the information stored in this account 
+        <%= button_to "Delete Account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-primary btn-block", style:"background: rgb(232,7,48);margin-top:0px;" %>
+      </p>
+    </div>
+  </div>
+</div>

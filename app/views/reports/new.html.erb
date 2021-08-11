@@ -1,0 +1,27 @@
+<section class="login-dark" style="background: url('/assets/dogs/dog_0-75d79fd96177ebc5f760e57026f76d18a060080e7d3d30027bd88b7adb6e28f1.jpg') center / cover no-repeat;">
+<div style = 'margin-top:65px;'>
+    <%= form_for :report, :url => post_reports_path(@post) do |f| %>
+     
+        <div class="illustration">
+                    <i class="fas fa-cat" style="color: rgb(60,156,15);"></i><i class="fas fa-dog" style="color: rgb(60,156,15);"></i>
+                    <h1 style="font-family: Amaranth, sans-serif;color: rgb(60,156,15);">New Report</h1>
+
+            </div>
+
+        <div class="form-group">
+                    <%= f.text_field :text, style: "color: rgb(0,0,0);width: 60%;border-radius: 7px;border-width: 1px;border-style: solid;margin:5px;",
+                     :value => "I believe this post violates the community guidelines.", required:"", minlength:"2" %>
+        </div>
+
+        <div class="form-group">
+                        <%= f.submit "Save report", class: "btn btn-primary btn-block", style: "background: rgb(81,133,210);" %>
+                    </div>
+        <%= link_to 'Back', posts_show_path(@post) %>
+
+
+        <% end %>
+
+  </div>
+</section>
+
+

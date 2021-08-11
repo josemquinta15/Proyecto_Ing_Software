@@ -1,0 +1,118 @@
+<section class="mb-4">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+            <div class="col-lg-3 mb-4 mb-md-0">
+                <div class="list-group list-group-naked mb-3">
+                <h5 class="ml-3">Categories</h5>
+                <hr />
+                <%= link_to posts_find_by_category_path(category: 'Dog'), method: :post do %>
+                    <%= render 'home/home_page/featured/category', :name => 'Dogs', :image_link => '/assets/dogs/dog_0-75d79fd96177ebc5f760e57026f76d18a060080e7d3d30027bd88b7adb6e28f1.jpg'%>
+                <% end %>
+                <%= link_to posts_find_by_category_path(category: 'Cat'), method: :post do %>
+                    <%= render 'home/home_page/featured/category', :name => 'Cats', :image_link => 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/close-up-of-cat-wearing-sunglasses-while-sitting-royalty-free-image-1571755145.jpg'%>
+                <% end %>
+
+                <%= link_to posts_find_by_category_path(category: 'Horse'), method: :post do %>
+                    <%= render 'home/home_page/featured/category', :name => 'Horses', :image_link => 'https://theplaidhorse.s3.amazonaws.com/media/uploads/2020/08/AdobeStock_326500445-1-scaled.jpeg'%>
+                <% end %>
+                
+                <%= link_to posts_find_by_category_path(category: 'Cow'), method: :post do %>
+                    <%= render 'home/home_page/featured/category', :name => 'Cows', :image_link => 'https://www.news-medical.net/image.axd?picture=2021%2F4%2Fshutterstock_1728214024.jpg'%>
+                <% end %>
+                
+                <%= link_to posts_find_by_category_path(category: 'Bird'), method: :post do %>
+                    <%= render 'home/home_page/featured/category', :name => 'Birds', :image_link => 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Eopsaltria_australis_-_Mogo_Campground.jpg/1200px-Eopsaltria_australis_-_Mogo_Campground.jpg'%>
+                <% end %>
+
+                <%= link_to posts_index_path do %>
+                    <%= render 'home/home_page/featured/category', :name => 'More', :image_link => 'https://a-z-animals.com/media/2021/01/mammals-400x300.jpg'%>
+                <% end %>
+    
+                
+                </div>
+            </div>
+
+            <div class="col-lg-9 mb-4 mb-md-0">
+                <!-- Carousel wrapper -->
+                <div
+                id="intro-carousel"
+                class="carousel slide carousel-fade"
+                data-ride="carousel"
+                >
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li
+                    data-target="#carouselBasicExample"
+                    data-slide-to="0"
+                    class="active"
+                    ></li>
+                    <li
+                    data-target="#carouselBasicExample"
+                    data-slide-to="1"
+                    ></li>
+                    <li
+                    data-target="#carouselBasicExample"
+                    data-slide-to="2"
+                    ></li>
+                </ol>
+                
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <a href="#!" class="ripple" data-ripple-color="light">
+                            <%= image_tag('/assets/home/girl_puppy-24e44d3bc3496997c57cff2199b56c28eb7ca4433bbb7ab41aa9fb757b64cefa.jpg', :class => "d-block w-100") %>
+                            <div class="carousel-caption d-none d-md-block">
+                            <h5 style = 'color:#fff;'>Find a Friend or a Partner for your life</h5>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="#!" class="ripple" data-ripple-color="light">
+                            <%= image_tag('/assets/home/chill-cat-e22278a5faa9a5b4eadfffd3e230b71536d4131ee5c8963324f40047250774f7.jpg', :class => "d-block w-100") %>
+                            <div class="carousel-caption d-none d-md-block">
+                            <h5 style = 'color:#000;'>Find someone as Cool as You</h5>
+                            </div>
+                        </a>
+                        
+                    </div>
+                    
+                    <div class="carousel-item">
+                        <a href="#!" class="ripple" data-ripple-color="light">
+                            <%= image_tag('/assets/home/family_dog-326a04e77e972ef62c16c1dd7f05e44abde7bfc91e046bc795ff03bd06677395.jpg', :class => "d-block w-100") %>
+                            <div class="carousel-caption d-none d-md-block">
+                            <h5 style = 'color:#e6e6e6;'>Encounter the new member of the Family</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <a
+                    class="carousel-control-prev"
+                    href="#intro-carousel"
+                    role="button"
+                    data-slide="prev"
+                >
+                    <span
+                    class="carousel-control-prev-icon"
+                    aria-hidden="true"
+                    ></span>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+                <a
+                    class="carousel-control-next"
+                    href="#intro-carousel"
+                    role="button"
+                    data-slide="next"
+                >
+                    <span
+                    class="carousel-control-next-icon"
+                    aria-hidden="true"
+                    ></span>
+                    <span class="visually-hidden">Next</span>
+                </a>
+                </div>
+                <!-- Carousel wrapper -->
+            </div>
+            </div>
+        </div>
+    </div>
+</section>

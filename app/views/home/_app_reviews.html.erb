@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="mgb-40 padb-30 auto-invert line-b-4 align-center">
+        <%# <h4 class="font-cond-l fg-accent lts-md mgb-10" contenteditable="false">Not Yet Convinced?</h4> %>
+        <h1 class="font-cond-b fg-text-d lts-md fs-300 fs-300-xs no-mg" contenteditable="false">Read Customer Reviews</h1>
+    </div>
+
+    <div class="row hash-list cols-3 cols-1-xs pad-30-all align-center text-sm">
+        <% img_path = 'https://bootdey.com/img/Content/avatar/avatar8.png'%>
+        <% text = "I adopted two wonderful pets & the whole process was so simple & easy. I’d definitely recommend to anyone looking to rescue a pet."%>
+        <% username = 'Marta Pérez'%>
+        <% location = 'Rancagua, Chile' %>
+        <%= render 'home/app_review', :img_path => img_path, :text => text, :username => username, :location => location, :left_line => false %>
+
+        <% img_path = 'https://bootdey.com/img/Content/avatar/avatar4.png'%>
+        <% text = "I wanted to find a second dog so that my first dog (who was also a rescue) would have a brother or sister. In the end he got a sister and they are best buddies. Please consider going to Perrits.com
+                    to find your next forever friend. The process is easy and you will not regret all the love you will receive from your new pet."%>
+        <% username = 'Ignacio Sánchez'%>
+        <% location = 'Las Condes, Chile' %>
+        <%= render 'home/app_review', :img_path => img_path, :text => text, :username => username, :location => location, :left_line => true %>
+
+        <% img_path = 'https://bootdey.com/img/Content/avatar/avatar7.png'%>
+        <% text = "What a relief to find caring and responsible prospective pet owners for five kittens. Honestly impressed with the people who responded to the posts, and even get updates on a couple of the kittens from their forever homes!"%>
+        <% username = 'Juan Carlos de la Llera'%>
+        <% location = 'La Serena, Chile' %>
+        <%= render 'home/app_review', :img_path => img_path, :text => text, :username => username, :location => location, :left_line => true %>
+        
+    </div>
+
+</div>

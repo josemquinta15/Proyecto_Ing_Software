@@ -1,0 +1,58 @@
+<%# <h2>Sign up</h2> %>
+
+<section class="login-dark" style="background: url('/assets/sign_up/dog_cat-3f26d11ba3e53e2c2cd1b70a5fa232c2d58f7d8890760ed1dfedbac15bf67792.jpg') center / cover no-repeat;">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:style => "opacity: 0.90;border-radius: 15px;"}) do |f| %>
+
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="illustration"><i class="fas fa-dog" style="color: rgb(60,156,15);"></i>
+      <h1 style="font-family: Amaranth, sans-serif;color: rgb(60,156,15);">Perrits</h1>
+    </div>
+
+    <%# FIELDS %>
+    <div class="form-group">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", type: "email", placeholder:"Email", required:"" %>
+    </div>
+<%#  %>
+    <div class="form-group">
+      <%= f.text_field :first_name, class:"form-control", placeholder:"First Name", required:"", minlength:"2" %>
+    </div>
+    <div class="form-group">
+      <%= f.text_field :last_name, class:"form-control",  placeholder:"Last Name", required:"", minlength:"2" %>
+    </div>
+    <div class="form-group">
+      <%= f.text_field :phone, class:"form-control",  placeholder:"Phone Number", required:"", minlength:"9", maxlength:"14" %>
+    </div>
+    <div class="form-group">
+      <%= f.text_field :city, class:"form-control",  placeholder:"City Name", required:"", minlength:"2" %>
+    </div>
+    <div class="form-group">
+      <%= f.select :gender, options_for_select(['F', 'M']), { :include_blank => "Please select Gender"}, {:class => "form-control", :required => ''} %>
+    </div>
+    <div class="form-group">
+      <%= f.file_field :avatar %>
+    </div>
+<%#  %>
+    <div class="form-group">
+      <%# <% if @minimum_password_length %> 
+      <%# <em>(<%= @minimum_password_length %> <%#characters minimum)</em> %>
+      <%# <% end %>
+      <%= f.password_field :password, autocomplete: "new-password", class:"form-control", placeholder:"Password", required:"", minlength:"8", maxlength:"100" %>
+    </div>
+
+    <div class="form-group">
+      <%# <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control", placeholder:"Repeat the Password", required:"", minlength:"8", maxlength:"100" %>
+    </div>
+
+    <div class="form-group row justify-content-center">
+      <%= f.submit "Sign up", class:"btn btn-primary btn-block", style:"background: rgb(81,133,210);" %>
+    </div>
+
+    <div class = forgot>
+      <%= render "devise/shared/links" %>
+    </div>
+
+  <% end %>
+
+
+</section>

@@ -1,0 +1,32 @@
+      #into-jumbotron {
+        background: #159957; /* fallback for old browsers */
+        background: -webkit-linear-gradient(
+          to bottom,
+          #283041,
+          #0f1420
+        ); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(
+          to bottom,
+          #283041,
+          #0f1420
+        ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      }
+
+      @media (max-width: 991.98px) {
+        #into-jumbotron .border-right {
+          border: none !important;
+        }
+      }
+
+      .list-group-naked .list-group-item {
+        background-color: transparent;
+        border: none;
+      }
+      .list-group-item-action:focus,
+      .list-group-item-action:hover {
+        background-color: #eeeeee;
+      }
+      .list-group-naked img {
+        width: 80px;
+        height: 45px;
+      }

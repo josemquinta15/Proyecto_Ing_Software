@@ -1,0 +1,25 @@
+<h2>Comment: <%= @comment.id %></h2>
+
+<div>
+    <h3>CO_ID</h3>
+    <p><%= @comment.id %></p>
+</div>
+
+# poner if parent id empty skip or sth like that
+<div>
+    <h3>PID</h3>
+    <p><%= @comment.pid %></p>
+</div>
+
+<div>
+    <h3>Text</h3>
+    <p><%= @comment.text %></p>
+</div>
+
+<div>
+    <h3>Date</h3>
+    <p><%= @comment.date.strftime("%d/%m/%y") %></p>
+</div>
+
+<p><%= link_to 'Edit', comments_edit_path(@comment.id) %><p>
+<p><%= link_to 'Delete', comments_delete_path(@comment.id), method: :delete %><p>

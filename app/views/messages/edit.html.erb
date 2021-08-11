@@ -1,0 +1,22 @@
+
+
+
+<div style = 'margin-top: 58px;'>
+    <h3> Edit Message </h3>
+    <%= form_with model: @message, local: true do |form| %>
+
+        <p>
+            Message:
+            <br>
+            <%= form.text_field :content %>
+        </p>
+
+        <p>
+            <%= form.submit %>
+        </p>
+
+    <% end %>
+
+    <%= link_to 'Back', chats_show_path %>
+
+</div>

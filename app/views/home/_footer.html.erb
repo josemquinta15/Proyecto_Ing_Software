@@ -1,0 +1,143 @@
+
+
+<footer class="text-center text-white" style="background-color: #232B3B">
+    <!-- Grid container -->
+    <div class="container p-4">
+    <form action="">
+        <p>
+        Get the best offers and most seen publications, right at your email. Subscribe bellow!
+        </p>
+        <!--Grid row-->
+        <div class="row d-flex justify-content-center">
+
+        <!--Grid column-->
+        <div class="col-md-5 col-12 mb-4 mb-md-0">
+            <!-- Email input -->
+            <div class="form-outline form-white mb-4">
+            <input type="email" id="form5Example2" class="form-control" />
+            <label class="form-label" for="form5Example2"
+                >Email address</label
+            >
+            </div>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-auto mb-4 mb-md-0">
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-outline-white mb-4">
+            Subscribe
+            </button>
+        </div>
+        <!--Grid column-->
+        </div>
+        <!--Grid row-->
+    </form>
+
+    <!--Grid row-->
+    <div class="row">
+        <!--Grid column-->
+        <div class="col-lg-4 mb-4 mb-lg-0">
+            <p><strong>About us</strong></p>
+
+            <p>
+                We are a passionate team, working day after day to assure that every animal in this world can find a new home to live.
+                We put together families and write new stories every day, by contacting sellers with buyers all around the globe.
+            </p>
+        </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+        <div class="col-lg-4 mb-4 mb-lg-0">
+            <p><strong>Useful links</strong></p>
+
+
+            <ul class="list-unstyled mb-0">
+                <li>
+                    <%= link_to new_animal_request_path, {:class=>"text-white"} do %>
+                        Request New Animal Type
+                    <% end %>
+                </li>
+                <%if user_signed_in?%>
+                    <li>
+                        <%= link_to home_my_account_path, {:class=>"text-white"} do %>
+                            Your Profile&nbsp;<i class="far fa-user"></i>
+                        <% end %>
+                    </li>
+                    <li>
+                        <%= link_to requests_path, {:class=>"text-white"} do %>
+                            Requests&nbsp;<i class="far fa-bell"></i>
+                        <% end %>
+                    </li>
+                    <li>
+                        <%= link_to reviews_index_path, {:class=>"text-white"} do %>
+                            Reviews&nbsp;<i class="far fa-star"></i>
+                        <% end %>
+                    </li>
+                    
+                    <%= link_to "Log Out",  destroy_user_session_path, method: :delete, class: "text-white" %>
+                <% end %>
+            </ul>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-4 mb-4 mb-lg-0">
+            <p><strong>Animals</strong></p>
+
+            <ul class="list-unstyled">
+                <li>
+                    <%= link_to posts_find_by_category_path(category: 'Dog'), method: :post, class: 'text-white' do %>
+                        Dogs <i class="fas fa-dog"></i>
+                    <% end %>
+                </li>
+                <li>
+                    <%= link_to posts_find_by_category_path(category: 'Cat'), method: :post, class: 'text-white' do %>
+                        Cats <i class="fas fa-cat"></i>
+                    <% end %>
+                </li>
+                <li>
+                    <%= link_to posts_find_by_category_path(category: 'Bird'), method: :post, class: 'text-white' do %>
+                        Birds <i class="fas fa-crow"></i>
+                    <% end %>
+                </li>
+                <li>
+                    <%= link_to posts_find_by_category_path(category: 'Horse'), method: :post, class: 'text-white' do %>
+                        Horses <i class="fas fa-horse"></i>
+                    <% end %>
+                </li>
+                
+                <li>
+                    <%= link_to posts_index_path, class: 'text-white' do %>
+                        Others
+                    <% end %>
+                </li>
+            </ul>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <%# <div class="col-lg-2 mb-4 mb-lg-0">
+        <p><strong>Support</strong></p>
+
+        <ul class="list-unstyled">
+            <li>
+            <a href="#!" class="text-white">Complaints</a>
+            </li>
+        </ul>
+        </div> %>
+        <!--Grid column-->
+    </div>
+    <!--Grid row-->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+    © 2020 Copyright:
+    <strong>
+        <%= link_to "Perrits.com", root_path, style: 'color:#fff;' %>
+    </strong>
+    </div>
+    <!-- Copyright -->
+</footer>

@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-md-2">
+        <%# <img src='/assets/my_account/user-556bbd7827938c9057c05a9c87cd9cf97777027758abc3a0b390993d320146a6.png' class="img img-rounded img-fluid"/> %>
+        <% if @comment.user.avatar.attached? %>
+            <%= image_tag(url_for(@comment.user.avatar), :class => "img img-rounded img-fluid comment-image") %>
+        <% else %>
+            <%= image_tag('/assets/my_account/user-556bbd7827938c9057c05a9c87cd9cf97777027758abc3a0b390993d320146a6.png', :class => "img img-rounded img-fluid comment-image") %>
+        <% end %>
+        <p class="comment-date">
+        <% if @comment %>    
+            <%= @comment.creation_date %>
+        <% end %>
+        </p>
+    </div>
+    <div class="col-md-10">
+        <p>
+            <% if @comment %>
+                <strong><%= @comment.user.full_name %></strong>
+            <% end %>
+
+        </p>
+        <div class="clearfix"></div>
+        <% if @comment %>
+            <p><%= @comment.text %></p>
+        <% end %>
+        <p>
+            <%# <a class="float-right btn btn-outline-primary ml-2"> <i class="fa fa-reply"></i> Reply</a> %>
+            <%# <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a> %>
+            <% if current_user == @comment.user %>
+                <%= link_to 'Edit', comments_edit_path(@comment.id) , class: "btn text-white btn-info", style: "float:right; margin:5px;"%>
+                <%= link_to 'Delete', comments_delete_path(@comment.id), method: :delete, class: "btn text-white btn-danger", style: "float:right; margin:5px;"%>
+            <% end %>
+        </p>
+
+        <%# <%= render 'comments/form', :type => 'son', :id => @comment.id, :pid => @post.id %> 
+    </div>
+    
+</div>

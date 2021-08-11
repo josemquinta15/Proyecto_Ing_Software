@@ -1,0 +1,36 @@
+.bootstrap_chat {
+  background-color: #74EBD5;
+  min-height: 100vh;
+}
+
+.text-small {
+  font-size: 0.9rem;
+}
+
+.messages-box, .chat-box {
+  height: 510px;
+  overflow-y: scroll;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+#product-chat-menu {
+  position:absolute;
+  background-color:#26b651;
+  width:98%;
+  height:fit-content;
+  z-index:1;
+  border-radius: 5px;
+  margin-left: 0px;
+  margin-right: 3px;
+}
+
+.product-image-chat {
+  border-radius: 7px;
+  height: 70px;
+  margin-left: 20px;
+  margin-top: 1px;
+
+}

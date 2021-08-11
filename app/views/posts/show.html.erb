@@ -1,0 +1,131 @@
+<script>
+    $(function() {
+    var $image = $('.product-image .image');
+    var currImage;
+    $('.product-thumbnails img').on('click', function() {
+        $image.css('background-image', 'url(' + $(this).attr("src") + ')');
+        currImage = "";
+    });
+    $('.product-thumbnails img').hover(function() {
+        currImage = $image.css('background-image');
+        $image.css('background-image', 'url(' + $(this).attr("src") + ')');
+    }, function() {
+        if (currImage !== "") {
+        $image.css('background-image', currImage);
+        }
+    });
+    
+    // Zoom in on mouseover and zoom out on mouseout
+    $('.product-image .image')
+    .on('mouseover', function() {
+        $(this).css('transform', 'scale(2)');
+    })
+    .on('mouseout', function() {
+        $(this).css('transform', 'scale(1.0)');
+    })
+    .on('mousemove', function(e){
+        $(this).css({'transform-origin': ((e.pageX - $(this).offset().left) / $(this).width()) * 100 + '% ' + ((e.pageY - $(this).offset().top) / $(this).height()) * 100 +'%'});
+    });
+    });
+
+</script>
+
+<div class="wrapper">
+    <div class="container">
+        <div class="row d-flex justify-content-center" >
+            <div class="col-lg-9 col-md-9 col-md-1 shadow-border"  style = 'margin-top:20px;'>
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="product-image">
+                            <% if @post.images.any? %>
+                                <div class="image img-fluid", style = 'background-image: url("<%= url_for(@post.images.first) %>");'></div>
+                            <% else %>
+                                <div class="image img-fluid", style = 'background-image: url("/assets/home/no_image-029092a34684b6e053f093867902beef848506a6280a6765a59e319c892450b3.jpg");'></div>
+                            <% end %>
+                        </div>
+                        <div class="row product-thumbnails">
+                            <% if @post.images.any? %>
+                                <% @post.images.each do |image|%>
+                                    <%= image_tag(url_for(image), :class => "img-fluid product-surroundings col-md-3")%>
+                                <% end %>
+                            <% else %>
+                                <%= image_tag('/assets/home/no_image-029092a34684b6e053f093867902beef848506a6280a6765a59e319c892450b3.jpg',
+                                 :class => "img-fluid product-surroundings col-md-3")%>
+                            <% end %>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="product-details">
+                            <h2 style = 'margin-bottom:0.2%;'><%= @post.title%></h2>
+                            <p style = margin-top:0px;font-size:14px;>Published At:  <%= @post.creation_date%></p>
+                            <h3><strong><%= @post.parsed_price%></strong></h3>
+                            <div style = 'margin-top:7%;'>
+                                <strong >Description</strong>
+                                <p style = 'padding-left:3%;margin-top:1%;'><%= @post.text%></p>
+                            </div>
+                            <p><strong>Type:</strong> <%= @post.ptype %></p>
+                            
+                            <% if current_user == @post.user %>
+                                <p><%= link_to 'Edit', posts_edit_path(@post.id), class: "btn text-white btn-info", style: "float:right; margin:5px;" %><p>
+                                <p><%= link_to 'Delete', posts_delete_path(@post.id), method: :delete, class: "btn text-white btn-danger", style: "float:right; margin:5px;" %><p>
+                            <% end %>
+                            
+                        </div>
+                        
+
+                    
+          
+                    </div>
+                </div>
+                <%if current_user != @post.user %>
+                                <p><%= link_to 'report', new_post_report_path(@post), method: :get, class: "btn text-white btn-danger", style: "float:left; margin:5px;" %><p>    
+                <% end %>
+               
+            </div>
+            
+            <div class = "shadow-border user-product-info" >
+                <!--Seller Image-->
+                <div class="d-flex justify-content-center" style= "padding-top:10%;">
+                    <% if @post.user.avatar.attached? %>
+                        <% @avatar = url_for(@post.user.avatar)%>
+                    <% else %>
+                        <% @avatar = '/assets/my_account/user-556bbd7827938c9057c05a9c87cd9cf97777027758abc3a0b390993d320146a6.png'%>
+                    <% end %>
+                    <img src= <%= @avatar %> alt="seller image" width="110" class="rounded-circle m-3">
+                </div>
+                        
+                <!--Seller Info-->
+                <div class= 'd-flex justify-content-center'>
+                    <h5><strong><%= @post.user.full_name %></strong></h5><br>
+                </div>
+                <div class = 'd-flex justify-content-center' style = 'color: #6a737c'>
+                <h6>With us since <%= @post.user.creation_date %> </h6>
+                </div>
+                <div style ='margin-left:10%;padding-top:5%;'>
+                    <i class="fas fa-phone" style ='margin-right:1%;'></i>
+                    <%= @post.user.phone %>
+                    <br>
+                    <i class="fas fa-map-marked-alt"></i> 
+                    <%= @post.location %>
+                    <br>
+                    <%= link_to home_profile_page_path(id: @post.user.id), :style => "color:#4f4f4f;" do%>
+                        <i class="fas fa-hand-pointer", style = 'margin-right:2%;'></i> Watch Seller Profile
+                    <% end %>
+                </div>
+
+
+
+                <% if user_signed_in? and current_user != @post.user %>    
+                    <div class = 'd-flex justify-content-center' style = 'padding-top:10%;'>
+                        <%= render 'requests/form', :@post => @post %>
+                    </div>
+                
+                <% end %>
+                
+            </div>
+        </div>
+    </div>
+
+    <%= render 'comments/comments', :@post => @post %>
+</div>
+

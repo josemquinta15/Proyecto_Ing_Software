@@ -1,0 +1,17 @@
+
+
+<%= form_for :report, :url => post_reports_path(@post) do |f| %>
+
+
+ <div class="form-group">
+            <%= f.text_field :text, style: "color: rgb(0,0,0);width: 40%;border-radius: 7px;border-width: 1px;border-style: solid;margin:5px;", :value => "I believe this post violates the community guidelines.",  required:"", minlength:"2" %>
+   </div>
+<div class="form-group row">
+                <%= f.submit "Save report", class: "btn btn-primary btn-block", style: "background: rgb(81,133,210);" %>
+            </div>
+<%= f.submit%>
+
+
+
+
+<% end %>

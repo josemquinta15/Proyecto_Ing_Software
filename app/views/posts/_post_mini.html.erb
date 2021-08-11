@@ -1,0 +1,23 @@
+<%= link_to posts_show_path(@post.id), class: "col-3" do %>
+    <div style="border-radius: 15px;padding-left: 10px;padding-right: 10px;border-width: 2px;border-color: var(--blue);margin-right: 0px;margin-left: 0px;max-width:300px;">
+
+        <img class="img-fluid" 
+        style="border-radius: 12px;border-bottom-right-radius: 0;border-bottom-left-radius: 0;border: 2px solid var(--blue) ;">
+
+        <% if @post.images.attached? %>
+            <%= image_tag(url_for(@post.images[0]), :class => "img-fluid", :style => "border-radius: 12px;border-bottom-right-radius: 0;border-bottom-left-radius: 0;border: 2px solid var(--blue) ;") %>
+        <% else %>
+            <%= image_tag('/assets/home/no_image-029092a34684b6e053f093867902beef848506a6280a6765a59e319c892450b3.jpg', :class => "img-fluid", :style => "border-radius: 12px;border-bottom-right-radius: 0;border-bottom-left-radius: 0;border: 2px solid var(--blue) ;") %>
+        <% end %>
+
+        <div class="row" style="margin-right: 0px;margin-left: 0px;border-radius: 12px;border-top-left-radius: 0;border-top-right-radius: 0;border-width: 2px;border-color: 
+        var(--blue);border-right-style: solid;border-bottom-style: solid;border-left-width: 2px;border-left-style: solid;">
+            <div class="col-6 align-self-center" style="border-width: 1px;border-color: var(--blue);border-right-width: 2px;border-right-style: solid;">
+                <h1 style="font-family: 'Averia Serif Libre', serif;font-weight: 400;text-align: center;font-size: 20px;text-decoration: none;"><%= @post.title%></h1>
+            </div>
+            <div class="col-6 align-self-center" style="text-align: center;">
+                <h1 style="font-family: 'Averia Serif Libre', serif;font-weight: 400;text-align: center;font-size: 20px;text-decoration: none;"><%= @post.parsed_price%></h1>
+            </div>
+        </div>
+    </div>
+<% end %>

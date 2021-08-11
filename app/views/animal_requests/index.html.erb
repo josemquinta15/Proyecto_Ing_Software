@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Animal Requests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Animal</th>
+      <th>Message</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @animal_requests.each do |animal_request| %>
+      <tr>
+        <td><%= animal_request.name %></td>
+        <td><%= animal_request.email %></td>
+        <td><%= animal_request.animal %></td>
+        <td><%= animal_request.message %></td>
+        <td><%= link_to 'Show', animal_request %></td>
+        <td><%= link_to 'Edit', edit_animal_request_path(animal_request) %></td>
+        <td><%= link_to 'Destroy', animal_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Animal Request', new_animal_request_path %>

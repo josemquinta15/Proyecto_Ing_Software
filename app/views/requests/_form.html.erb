@@ -1,0 +1,40 @@
+<%= form_with(model: @request, local: true, :url => {:controller => 'requests'}) do |form| %>
+
+
+  <div class="field">
+    <%= form.number_field :buyer_id, value: current_user.id, type: :hidden %>
+  </div>
+
+  <div class="field">
+    <%= form.number_field :owner_id, value: @post.user.id, type: :hidden %>
+  </div>
+
+  <div class="field">
+    <%= form.number_field :post_id, value: @post.id, type: :hidden %>
+  </div>
+
+  <div class="field">
+    <%= form.text_field :state, value: 'Sent to Owner', type: :hidden %>
+  </div>
+
+  <div class="field">
+    <%= form.number_field :chid, value: 1, type: :hidden %>
+  </div>
+
+  <div class="field">
+    <%= form.text_field :reviewed_own, value: 'false', type: :hidden %>
+  </div>
+
+  <div class="field">
+    <%= form.text_field :reviewed_buy, value: 'false', type: :hidden %>
+  </div>
+
+  <div class="field">
+    <%= form.text_field :viewed, value: 'false', type: :hidden %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Adopt / Buy', class: "btn text-white btn-success", style: "float:right; margin:5px;" %>
+  </div>
+
+<% end %>

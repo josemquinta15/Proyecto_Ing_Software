@@ -1,0 +1,38 @@
+
+
+
+<section class="login-dark" style="background: url('/assets/login/login_bkg-9753f1f28e49fe4c054725fc78826c33518673a731fbca857da2fa91b3bb3f9b.jpg') center / cover no-repeat;">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:style => "opacity: 0.90;border-radius: 15px;"}) do |f| %>
+    <h2 class="sr-only">Login Form</h2>
+    <div class="illustration"><i class="fas fa-dog" style="color: rgb(60,156,15);"></i>
+      <h1 style="font-family: Amaranth, sans-serif;color: rgb(60,156,15);">Perrits</h1>
+    </div>
+
+    <%# FIELDS %>
+    <div class="form-group">
+      <%# <%= f.label :email %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", type: "email", placeholder:"Email", required:""%>
+    </div>
+
+    <div class="form-group">
+      <%# <%= f.label :password %>
+      <%= f.password_field :password, autocomplete: "current-password", class:"form-control", placeholder:"Password", required:"", minlength:"8", maxlength:"100" %>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="field form-group">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
+    <% end %>
+
+    <div class="form-group row">
+      <%= f.submit "Log in", class:"btn btn-primary btn-block", style:"background: rgb(81,133,210);" %>
+    </div>
+    <div class = forgot>
+      <%= render "devise/shared/links" %>
+    </div>
+
+  <% end %>
+    
+</section>

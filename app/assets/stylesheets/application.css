@@ -1,0 +1,65 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require font_awesome5_webfont
+ */
+
+.show-review{
+    background-color:#fff;
+    width:80%;
+    border-radius: 10px;
+}
+.show-request{
+    background-color:#fff;
+    border-radius:10px;
+    width: 75%;
+}
+
+.user-product-info{
+    margin-top:20px !important;
+    margin-left:1%;
+    width:24% !important;
+}
+
+@media screen and (max-width: 600px){
+    .show-review{
+        width:90%;
+    }
+    .show-request{
+        width:90%;
+    }
+    .user-product-info{
+        width:85% ! important;
+    }
+    .profile-row{
+        margin-right: 0%;
+        margin-left: 0%;
+    }
+    /* .filter-results-big{
+        display:none;
+    } */
+}
+
+.profile-row{
+    margin-right: 2.5%;
+    margin-left: 5%;
+    margin-top:58px;
+}
+
+.filter-results-big{
+    background-color:#fff;
+    height:30%;
+    border-radius:5px;
+    margin-bottom:5%;
+}

@@ -1,0 +1,113 @@
+
+<% if @selected_chat and @selected_chat.messages %>
+  <% ordered_messages = @selected_chat.messages.sort_by {|message| message.created_at}%>
+<% else %>
+  <% ordered_messages = nil %>
+<% end %>
+
+<script>
+function ScrollDown(id){
+    var element = document.getElementById(id);
+    element.scrollTop = element.scrollHeight;
+}
+</script>
+
+<div class="container py-5 px-4" style='margin-top:58px;'>
+  <!-- For demo purpose-->
+  <header class="text-center">
+    <h1 class="display-4 text-black">Chat</h1>
+  </header>
+
+  <div class="row rounded-lg overflow-hidden shadow">
+    <!-- Users box-->
+    <div class="col-md-5 px-0">
+      <div class="bg-white">
+
+        <div class="bg-gray px-4 py-2 bg-light">
+          <p class="h5 mb-0 py-1">Recent</p>
+        </div>
+
+        <div class="messages-box">
+          <div class="list-group rounded-0">
+            <% if @selected_chat and current_user.ordered_chats%>
+              <% current_user.ordered_chats.each do |chat| %>
+                <%= render 'chats/contact', :@chat => chat %>
+              <% end %>
+            <% else %>
+              <%= 'You don\'t have any Chats' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Chat Box-->
+    <div class="col-md-7 px-0" style= 'position:relative;'>
+      <div id = 'product-chat-menu' class = 'row'>
+        <div class = 'col-2'>
+          <% if @selected_chat and @selected_chat.post.images.attached? %>
+              <%= image_tag(url_for(@selected_chat.post.images[0]), :class => "img-fluid product-image-chat") %>
+          <% elsif @selected_chat %>
+              <%= image_tag('/assets/home/no_image-029092a34684b6e053f093867902beef848506a6280a6765a59e319c892450b3.jpg', :class => "img-fluid product-image-chat") %>
+          <% end %>
+        </div>
+        <% if @selected_chat%>
+          <div class ='col-4' style = 'margin:auto;'>
+            <h4><%= @selected_chat.post.title.capitalize%></h4>
+          </div>
+          <div class = 'col-3' style = 'margin:auto;'>
+            <h5> <%= @selected_chat.post.parsed_price%></h5>
+          </div>
+        <% end %>
+        <div class = 'col-3' style = 'margin:auto;'>
+          <%#= @selected_chat.request.reviewed%>
+          <% if @selected_chat and ((@selected_chat.request.reviewed_own == 'false' and current_user.id.to_i == @selected_chat.request.owner_id.to_i) or (@selected_chat.request.reviewed_buy == 'false' and
+                                                                                                current_user.id.to_i == @selected_chat.request.buyer_id.to_i  )  ) %>
+            <%= link_to reviews_new_path(:buyer_id => @selected_chat.request.buyer_id, :owner_id => @selected_chat.request.owner_id, :request_id => @selected_chat.request.id), method: :post, class: "btn btn-primary", style: "margin:5px;"  do %>
+              Review Sell
+            <% end %>
+          <% end %>
+          <%#= link_to requests_change_state_path(:id => 1, :new_state =>'Rejected'), method: :post, class: "btn btn-danger", style: "margin:5px;"  do %>
+              <%# Cancel  %>
+            <%# end %>
+        </div>
+      </div>
+      <div class="px-4 chat-box bg-white" id = 'messages' style = "padding-top: 10%;">
+        <!-- Sender Message-->
+        <% if ordered_messages %>
+          <% ordered_messages.each do |message|%>
+              <%= render 'home/message', :@message => message, :message_sent => true %>
+          <% end %>
+        <% else %>
+          <%= 'You don\'t have any messages. Start a conversation by sending a new request!' %>
+        <% end %>
+      </div>
+
+      <script>ScrollDown('messages')</script>
+      <!-- Typing area -->
+      <%# <form action="#" class="bg-light"> %>
+      <% if @selected_chat %>
+        <%= form_with scope: :message, url: messages_path, local: true do |form| %>
+
+          <div class="input-group", style = 'padding-top:0px;'>
+            <%= form.text_field :content, {:class => "form-control rounded-0 border-0 bg-light", 
+            :'aria-describedby' => "button-addon2", :placeholder=>"Type a message", :type => 'text', :id => 'input_msg', :value => ""} %>
+
+            <%= form.number_field :user_id, value: current_user.id, type: :hidden %>
+            <%= form.number_field :chat_id, value: @selected_chat.id, type: :hidden %>
+            <%= form.number_field :viewed, value: 'false', type: :hidden %>
+
+            <div class="input-group-append">
+              <%= button_tag(type: 'submit', class: "btn btn-link", id: "button-addon2") do %>
+                <i class="fa fa-paper-plane"></i>
+              <% end %>
+            </div>
+
+          </div>
+
+        <% end %>
+      <% end %>
+
+
+    </div>
+  </div>
+</div>

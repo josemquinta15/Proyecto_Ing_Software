@@ -1,0 +1,38 @@
+
+<% if @post %>
+    <% @comments = @post.comments %>
+<% end %>
+
+<div class="container" style="margin-bottom:50px;margin-top:50px;">
+	
+	<div class="card">
+	    <div class="card-body">
+			<% passed = false%>
+            <% if @comments %>
+                <% @comments.each do |comment| %>
+                    <% if not comment.father_id%>
+                        <% passed = true %>
+                        <%= render 'comments/main_comment', :@comment => comment, :@post => @post %>
+                        <% if user_signed_in? %>
+                            <% comment.sons.each do |son| %>
+                                <%= render 'comments/son_comment', :@comment => son, :@post => @post %>
+                            <% end %>
+                            <%= render 'comments/form', :type => 'son', :id => @comment.id, :pid => @post.id %>
+                        <% end %>
+                    <% end %>
+                    
+                <% end %>
+            <% end %>
+			<% if not passed and user_signed_in? %>
+				<p>No comments yet, make the first one!</p>
+			<% elsif not user_signed_in? %>
+                <p>You need to login to make comments</p>
+            <% end %>
+
+	    </div>
+	</div>
+    <% if user_signed_in? %>
+	    <%= render 'comments/form', :type => 'father', :pid => @post.id %>
+    <% end %>
+	
+</div>

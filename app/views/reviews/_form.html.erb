@@ -1,0 +1,40 @@
+
+
+<%= form_with(model: @review, method: :post) do |form| %>
+  <% if review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(review.errors.count, "error") %> prohibited this request from being saved:</h2>
+
+      <ul>
+      <% review.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field"> 
+    <%= form.label :text %>
+    <%= form.text_area :text %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rating %>
+    <%= form.number_field :rating, step: :any, min: 0, max: 5%>
+  </div>
+
+  <div class="field">
+    <%= form.label :reid %>
+    <%= form.number_field :reid %>
+  </div>
+
+  <div class="field">
+    <%= form.label :aid %>
+    <%= form.number_field :aid %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Crear review" %>
+  </div>
+<% end %>
+

@@ -1,0 +1,19 @@
+
+<div style = 'margin-top: 58px;'>
+    <%= form_with scope: :message, url: messages_path, local: true do |form| %>
+
+        <p>
+            Message:
+            <br>
+            <%= form.text_field :content %>
+        </p>
+
+        <p>
+            <%= form.submit %>
+        </p>
+
+    <% end %>
+
+    <%= link_to 'Back', messages_path %>
+
+</div>

@@ -1,0 +1,50 @@
+<% if @message.user != current_user%>
+    <% @message.update(viewed: 'true') %>
+    <div class="media w-50 mb-3">
+        <%# <img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle"> %>
+        <div class="media-body ml-3">
+
+            <div class="bg rounded row", style = 'background-color:rgb(191,213,220);'>
+                <div class = 'p-2 col-10'>
+                    <%= @message.content%>
+                </div>
+
+            </div>
+
+            <p class="small text-muted">
+                <%= @message.created_contact_date%>
+            </p>
+        </div>
+    </div>
+
+<% else %>
+    <div class="media w-100 mb-3 d-flex align-items-end flex-column">
+        <div class="media-body ml-3 w-50">
+
+            <div class="bg rounded row", style = 'background-color:rgb(55,196,238);'>
+                <div class = 'p-2 col-10'>
+                    <%= @message.content %>
+                </div>
+
+                <div class = 'ml-auto col-2 p-2'>
+                    <div class="dropdown" >
+                        <button class="btn-small btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
+                        style = 'background-color:inherit;border:0;height = 10px;'>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <%= link_to 'Edit',  edit_message_path(@message), style: 'color:#000;', class: "dropdown-item"%>
+                            <%= link_to 'Delete',  message_path(@message), method: :delete, style: 'color:#000;', class: "dropdown-item" %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <p class="small text-muted">
+                <%= @message.created_contact_date %>
+            </p>
+
+        </div>
+    </div>
+<% end %>
+

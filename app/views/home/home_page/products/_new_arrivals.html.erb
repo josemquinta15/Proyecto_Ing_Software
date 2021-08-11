@@ -1,0 +1,19 @@
+<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+    <%= link_to posts_show_path(@post.id), class:'ripple bg-image hover-zoom d-block mb-2', 'data-ripple-color': "light" do %>
+        
+        
+        <% if @post.images.attached? %>
+            <%= image_tag(url_for(@post.images[0]), :class => "w-100") %>
+        <% else %>
+            <%= image_tag('/assets/home/no_image-029092a34684b6e053f093867902beef848506a6280a6765a59e319c892450b3.jpg', :class => "w-100") %>
+        <% end %>
+
+        <small class="d-block">
+            <strong style='text-decoration:none;color:#000;'> 
+                <%= @post.parsed_price %> 
+            </strong>
+        </small>
+        <small class="d-block text-muted"> <%= subtitle %> </small>
+    
+    <% end %>
+</div>

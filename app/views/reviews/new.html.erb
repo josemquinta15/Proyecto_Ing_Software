@@ -1,0 +1,53 @@
+
+<section class="login-dark" style="background: url('/assets/dogs/dog_0-75d79fd96177ebc5f760e57026f76d18a060080e7d3d30027bd88b7adb6e28f1.jpg') center / cover no-repeat;">
+
+<% 
+if current_user.id.to_i == @buyer_id.to_i 
+    aid = current_user.id
+    reid = @owner_id
+
+elsif current_user.id.to_i == @owner_id.to_i
+    aid = current_user.id
+    reid = @buyer_id
+end
+%>
+
+<%= form_with(model: @review, method: :post) do |form| %>
+  <% if @review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this request from being saved:</h2>
+
+      <ul>
+      <% @review.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <h1>How was the process?</h1>
+  <p style = 'color:#000;'>Leave a review, to tell future users about your experience. </p>
+
+  <div class="form-group" style = 'color:#000;'> 
+    <%= form.text_area :text, placeholder: 'Tell us your experience', value: '', style: 'width:100%;' %>
+  </div>
+
+  <div class="form-group" style = 'color:#000;'>
+    Rate the buyer/seller (from 1 to 5)
+    <%= form.number_field :rating, step: :integer, min: 1, max: 5, type: 'number'%>
+  </div>
+
+  <div class="field">
+    <%= form.number_field :reid, type: 'hidden', value: reid %>
+  </div>
+
+  <div class="field">
+    <%= form.number_field :aid, type: 'hidden', value: aid %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Create Review" %>
+  </div>
+<% end %>
+
+
+</section>

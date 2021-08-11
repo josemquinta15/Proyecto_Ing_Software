@@ -1,0 +1,29 @@
+<%= notice %>
+
+<h3>Create new Comment</h3>
+
+<%= form_with(model: @comment, method: :post) do |form| %>
+    
+    <div class="field">
+        
+        <%= form.number_field :user_id, value: current_user.id, type: :hidden %>
+    </div>
+    
+    <div class="field">
+        <%= form.label :PID %>
+        <%= form.text_field :pid %>
+    </div>
+    
+    <div class="field">
+        <%= form.label :Text %>
+        <%= form.text_field :text %>
+    </div>
+    
+
+    <div class="action">
+        <%= form.submit "Create Comment" %>
+    </div>
+
+<% end %>
+
+<p><%= link_to 'Back', comments_index_path %></p>

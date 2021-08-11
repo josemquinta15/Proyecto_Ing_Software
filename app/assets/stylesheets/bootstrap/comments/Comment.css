@@ -1,0 +1,23 @@
+.card-inner {
+  margin-left: 4rem;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+  color: #000000;
+}
+.comment-date{
+  text-align: center !important;
+}
+
+@media screen and (max-width: 600px){
+  .comment-image{
+    width:30%;
+  }
+  .comment-date{
+    text-align: left !important;
+  }
+  .card-inner{
+    margin-left: 1rem;
+  }
+}

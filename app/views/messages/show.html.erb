@@ -1,0 +1,16 @@
+
+<div style = 'margin-top:58px;'>
+    <h4> 
+        Message Info <br>
+        <%if @message%>
+            Message: <%= @message.content %>
+            <br>
+            Created at: <%= @message.created_at %>
+        <% end %>
+    </h4>
+
+    <% if @message %>
+        <%= link_to 'Edit',  edit_message_path(@message) %>
+        <%= link_to 'Delete',  message_path(@message), method: :delete %>
+    <% end %>
+</div>

@@ -1,0 +1,50 @@
+
+<section class="login-dark" style="background: url('/assets/dogs/dog_0-75d79fd96177ebc5f760e57026f76d18a060080e7d3d30027bd88b7adb6e28f1.jpg') center / cover no-repeat;">
+    <div style = 'margin-top:65px;'>
+
+        <%= form_with(model: @post, method: :patch, url: posts_update_path, style: "opacity: 0.90;border-radius: 15px;") do |form| %>
+            <div class="illustration"><i class="fas fa-cat" style="color: rgb(60,156,15);"></i><i class="fas fa-dog" style="color: rgb(60,156,15);"></i>
+                <h1 style="font-family: Amaranth, sans-serif;color: rgb(60,156,15);">Edit Post</h1>
+            </div>
+
+            <div class="form-group">
+                <%= form.text_field :title, placeholder: "Title", style:"color: rgb(0,0,0);width: 40%;border-radius: 7px;border-width: 1px;border-style: solid;margin:5px;", required:"", minlength:"2"%>
+            </div>
+
+            <div class="form-group">
+                <%= form.text_area :text, placeholder:"Description", style:"border: 1px solid rgb(95, 79, 79);border-radius: 7px; margin:5px;width:100%;", required:"", minlength:"2"  %>
+            </div>
+            
+            <div class="form-group">
+                <%= form.number_field :price, placeholder: "Price", style: "color: rgb(0,0,0);width: 20%;border-width: 1px;border-style: solid;border-bottom-color: rgb(95, 79, 79);border-radius: 7px; margin:5px;", required:"" %>
+            </div>
+            <div class="form-group">
+                <%= form.text_field :location, placeholder: "Location (City)", style: "color: rgb(0,0,0);width: 40%;border-radius: 7px;border-width: 1px;border-style: solid;margin:5px;", required:"", minlength:"2" %>
+            </div>
+            <div class="form-group">
+                <%= form.file_field :images, :accept => 'image/png,image/gif,image/jpeg,image/jpg', :multiple => true, :style => 'color:#000;margin:5px;' %>
+            </div>
+            
+            <div class="form-group" style= 'margin: 5px;border-radius: 5px;'>
+                <%= form.label 'Select the animal: ', style: 'margin:5px;color:#000;'%>
+                <%= form.select :animal, ['Dog', 'Cat', 'Horse', 'Cow', 'Bird', 'Hamster', 'Lion']%>
+            </div>
+
+            <div class="form-group" style= 'margin: 5px;border-radius: 5px;'>
+                <%= form.label 'Select the type: ', style: 'margin:5px;color:#000;'%>
+                <%= form.select :ptype, ['Sell', 'Adoption']%>
+            </div>
+
+            <div class="form-group row">
+                <%= form.submit "Save post changes", class: "btn btn-primary btn-block", style: "background: rgb(81,133,210);" %>
+            </div>
+
+            <%= link_to 'Back', posts_show_path(@post.id), class: 'forgot' %>
+        <% end %>
+
+        
+
+    </div>
+</section>
+
+

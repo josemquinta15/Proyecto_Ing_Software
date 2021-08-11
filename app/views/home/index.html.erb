@@ -1,0 +1,265 @@
+
+<!--Main layout-->
+<main class="mb-4" style = 'margin-top:85px'>
+    <div class="container">
+    <!--Section: Featured-->
+    <%= render 'home/home_page/featured'%>
+    <!--Section: Featured-->
+
+    <!--Section: Content-->
+    <section class="mb-4">
+        <div class="row">
+        <!-- New Arrivals -->
+        <div class="col-md-6 mb-4 mb-md-0">
+            <div class="card">
+            <div class="card-body">
+                <a href="#!" class="text-reset mb-3 d-block"
+                ><i class="fas fa-box mr-2"></i
+                ><strong style = 'margin-left:10px;'>New arrivals</strong></a
+                >
+
+                <div class="row text-center">
+                    <% if Post.first %>
+                        <%= render 'home/home_page/products/new_arrivals', subtitle: 'Trending Now', :@post => Post.first %>
+                    <% end%>
+                    <% if Post.second %>
+                        <%= render 'home/home_page/products/new_arrivals', subtitle: 'Trending Now', :@post => Post.second%>
+                    <% end%>
+                    <% if Post.third %>
+                        <%= render 'home/home_page/products/new_arrivals', subtitle: 'Trending Now', :@post => Post.third%>
+                    <% end%>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- By Location -->
+        <div class="col-md-6 mb-4 mb-md-0">
+            <div class="card">
+            <div class="card-body">
+                <a href="#!" class="text-reset mb-3 d-block"
+                ><i class="fas fa-globe-asia mr-2"></i
+                ><strong style = 'margin-left:10px;'>Search by location</strong></a
+                >
+
+                <div class="row text-center">
+                    <% if Post.third %>
+                        <%= render 'home/home_page/products/by_loc', :@post => Post.third %>
+                    <% end%>
+                    <% if Post.first %>
+                        <%= render 'home/home_page/products/by_loc', :@post => Post.first %>
+                    <% end%>
+                    <% if Post.second %>
+                        <%= render 'home/home_page/products/by_loc', :@post => Post.second %>
+                    <% end%>
+
+                
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!--Section: Content-->
+
+    <!--Section: Content-->
+    <section class="mb-5">
+        <h5 class="mb-4 text-uppercase"><strong>Animals For Adoption</strong></h5>
+
+        <div class="shadow-1">
+        <div class="row">
+            <div class="col-lg-12 mb-8 mb-md-0">
+                <div class="row text-center">
+                    <% for post in Post.where(ptype: 'Adoption').first(4)%>
+                        <%= render 'home/home_page/products/standard', :@post => post, adopt: true %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!--Section: Content-->
+    <section class="mb-5">
+        <h5 class="mb-4 text-uppercase"><strong>Animals For Sale</strong></h5>
+
+        <div class="shadow-1">
+        <div class="row">
+
+            <div class="col-lg-12 mb-8 mb-md-0">
+                <div class="row text-center">
+                    <% for post in Post.where(ptype: 'Sell').first(4)%>
+                        <%= render 'home/home_page/products/standard', :@post => post, adopt: true %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!--Section: Content-->
+    <section class="mb-5">
+        <h5 class="mb-4 text-uppercase"><strong>Most Recent Publications</strong></h5>
+
+        <div class="shadow-1">
+        <div class="row">
+
+            <div class="col-lg-12 mb-8 mb-md-0">
+                <div class="row text-center">
+                    <% for post in Post.order(:created_at).last(4)%>
+                        <%= render 'home/home_page/products/standard', :@post => post, adopt: true %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!--Section: Content-->
+    <%# <section>
+        <h5 class="mb-4 text-uppercase">
+        <strong>Explore by Trending 2020</strong>
+        </h5>
+
+        <div class="row text-center">
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+            <a
+            href="#!"
+            class="ripple bg-image hover-zoom d-block mb-2"
+            data-ripple-color="light"
+            >
+            <img
+                src="https://mdbootstrap.com/img/new/ecommerce/vertical/132.jpg"
+                class="w-100 rounded"
+                alt=""
+            />
+            </a>
+
+            <p><strong>New arrivals</strong></p>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+            <a
+            href="#!"
+            class="ripple bg-image hover-zoom d-block mb-2"
+            data-ripple-color="light"
+            >
+            <img
+                src="https://mdbootstrap.com/img/new/ecommerce/vertical/004.jpg"
+                class="w-100 rounded"
+                alt=""
+            />
+            </a>
+
+            <p><strong>Hot items</strong></p>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+            <a
+            href="#!"
+            class="ripple bg-image hover-zoom d-block mb-2"
+            data-ripple-color="light"
+            >
+            <img
+                src="https://mdbootstrap.com/img/new/ecommerce/vertical/071.jpg"
+                class="w-100 rounded"
+                alt=""
+            />
+            </a>
+
+            <p><strong>Best deals</strong></p>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+            <a
+            href="#!"
+            class="ripple bg-image hover-zoom d-block mb-2"
+            data-ripple-color="light"
+            >
+            <img
+                src="https://mdbootstrap.com/img/new/ecommerce/vertical/029.jpg"
+                class="w-100 rounded"
+                alt=""
+            />
+            </a>
+
+            <p><strong>Trending design</strong></p>
+        </div>
+        </div>
+
+        <div class="row text-center">
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+            <a
+            href="#!"
+            class="ripple bg-image hover-zoom d-block mb-2"
+            data-ripple-color="light"
+            >
+            <img
+                src="https://mdbootstrap.com/img/new/ecommerce/vertical/001.jpg"
+                class="w-100 rounded"
+                alt=""
+            />
+            </a>
+
+            <p><strong>New arrivals</strong></p>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+            <a
+            href="#!"
+            class="ripple bg-image hover-zoom d-block mb-2"
+            data-ripple-color="light"
+            >
+            <img
+                src="https://mdbootstrap.com/img/new/ecommerce/vertical/007.jpg"
+                class="w-100 rounded"
+                alt=""
+            />
+            </a>
+
+            <p><strong>Hot items</strong></p>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+            <a
+            href="#!"
+            class="ripple bg-image hover-zoom d-block mb-2"
+            data-ripple-color="light"
+            >
+            <img
+                src="https://mdbootstrap.com/img/new/ecommerce/vertical/018.jpg"
+                class="w-100 rounded"
+                alt=""
+            />
+            </a>
+
+            <p><strong>Best deals</strong></p>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+            <a
+            href="#!"
+            class="ripple bg-image hover-zoom d-block mb-2"
+            data-ripple-color="light"
+            >
+            <img
+                src="https://mdbootstrap.com/img/new/ecommerce/vertical/055.jpg"
+                class="w-100 rounded"
+                alt=""
+            />
+            </a>
+
+            <p><strong>Trending design</strong></p>
+        </div>
+        </div>
+    </section> %>
+    <!--Section: Content-->
+    </div>
+    <%# <section class="mb-5"> %>
+    <%= render 'home/app_reviews'%>
+    <%# </section> %>
+</main>
+<!--Main layout-->
+
+
+
+
+

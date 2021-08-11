@@ -1,0 +1,43 @@
+<% if type == 'son'
+    placeholder = 'Add a Response'
+   elsif type == 'father'
+    placeholder = 'Add a New Comment'
+   end%>
+
+<%= form_with scope: :comment, url: comments_path, local: true do |form| %>
+
+    <div class="input-group", style = 'padding-top:0px;margin-top:20px;'>
+        <% if type == 'son' %>
+            <%= form.text_field :text, {:class => "form-control rounded-0 border-1 bg-light", 
+            :'aria-describedby' => "button-addon2", :placeholder=>placeholder, :type => 'text', :value => '', :style => 'max-width:500px;margin-left:50px;'} %>
+        <% elsif type == 'father'%>
+            <%= form.text_field :text, {:class => "form-control rounded-0 border-2 bg-light", 
+            :'aria-describedby' => "button-addon2", :placeholder=>placeholder, :type => 'text', :value => ''} %>
+        <% end %>
+        <div class="input-group-append">
+
+        <%= button_tag(type: 'submit', class: "btn btn-link", id: "button-addon2", value: 'Create Comment') do %>
+            <i class="far fa-plus-square"></i>
+        <% end %>
+
+        </div>
+    </div>
+    <% if type == 'son'%>
+        <div class="field">
+            <%# <%= form.text_field :comment_type, value: 'son', type: :hidden %>
+            <%= form.text_field :father_id, value: id, type: :hidden %>
+        </div>
+    <% elsif type == 'father'%>
+        <div class="field">
+            <%# <%= form.text_field :comment_type, value: 'father', type: :hidden %>
+            <%= form.text_field :father_id, value: nil, type: :hidden %>
+        </div>
+    <% end %>
+
+    <div class="field">
+        <%= form.number_field :user_id, value: current_user.id, type: :hidden %>
+    </div>
+    <div class="field">
+        <%= form.number_field :post_id, value:pid, type: :hidden %>
+    </div>
+<% end %>

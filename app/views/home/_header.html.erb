@@ -1,0 +1,81 @@
+
+<nav class="navbar navbar-dark navbar-expand-md fixed-top bg-dark navbar--apple">
+    <div class="container"><button data-toggle="collapse" class="navbar-toggler" data-target="#menu"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span></button>
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav flex-grow-1 justify-content-between">
+                <li class="nav-item  d-xs-block d-md-block">
+                    <%= link_to root_path, {:style=>"font-family: Amaranth, sans-serif;font-size: 23px;padding-top: 0px;", :class=>"nav-link"} do %>                        
+                        <i class="fa fa-dog"></i>Perrits&nbsp;
+                    <%end%>
+                </li>
+                <li class="nav-item">
+                </li>
+                <li class="nav-item">
+                </li>
+                <li class="nav-item">
+                    <%= link_to "Posts",  posts_index_path, class:"nav-link" %>
+                </li>
+                <li class="nav-item">   
+                    <%= link_to 'New post', posts_new_path, class:"nav-link" %>
+                </li>
+                
+                <% if !user_signed_in?%>
+                    <li class="nav-item">
+                        <%= link_to "Sign Up",  new_user_registration_path, class:"nav-link" %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to "Log In",  new_user_session_path, class:"nav-link" %>
+                    </li>
+                <% else %>
+                    <li class="nav-item">
+                        <% chats = Chat.joins(:request).where("owner_id = ? OR buyer_id = ?", current_user.id, current_user.id)%>
+                        <% counter = 0%>
+                        <% for chat in chats%>
+                            <% if chat.has_notifications? and current_user.id != chat.messages.last.user_id%>
+                                <% counter += 1%>
+                            <% end %>
+                        <% end %>
+                        <%= link_to chats_show_path, class:"nav-link" do%>
+                            Chat 
+                            <%if counter > 0%>
+                                <span class="badge bg-danger"><%= counter %></span>
+                            <% end %>
+                        <% end %>
+                    </li>
+                <% end %>
+
+                
+                <% if user_signed_in? %>
+                    <% request_notifications = Request.where("owner_id = ? AND viewed = ?", current_user.id, 'false').size%>
+                    <li class="nav-item dropdown">
+                        <a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#">
+                            My Account 
+                            <% if request_notifications > 0%>
+                                <span class="badge bg-danger"><%= request_notifications %></span>
+                            <% end %>
+                        </a>
+                        <div class="dropdown-menu">
+                            <%= link_to home_my_account_path, {:class=>"dropdown-item"} do %>
+                                Profile&nbsp;<i class="far fa-user"></i>
+                            <% end %>
+                            <%= link_to requests_path, {:class=>"dropdown-item"} do %>
+                                Requests&nbsp;<i class="far fa-bell"></i>
+                                <% if request_notifications > 0%>
+                                    <span class="badge bg-danger"><%= request_notifications %></span>
+                                <% end %>
+                            <% end %>
+                            
+                            <%= link_to reviews_index_path, {:class=>"dropdown-item"} do %>
+                                Reviews&nbsp;<i class="far fa-star"></i>
+                            <% end %>
+                            
+                            <%= link_to "Log Out",  destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+                        </div>
+                    </li>
+                <% end %>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
